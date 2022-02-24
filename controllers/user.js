@@ -56,7 +56,7 @@ class UserController {
         throw { name: "INVALID_PASSWORD" };
       }
       if (!user) {
-        throw { name: "INVALID_USER" };
+        throw { name: "INVALID_USER_FIELD" };
       }
 
       const findUser = await User.findOne({

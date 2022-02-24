@@ -45,7 +45,8 @@ class WishlistController {
         throw { name: "NOT_FOUND" };
       }
 
-      const result = await Wishlist.create({
+      
+      const [result, created] = await Wishlist.findOrCreate({
         UserId: req.user.id,
         RestaurantId,
       });
