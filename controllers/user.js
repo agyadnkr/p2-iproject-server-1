@@ -52,11 +52,11 @@ class UserController {
       const { user, password } = req.body;
       // console.log(password)
 
-      if (!password) {
-        throw { name: "INVALID_PASSWORD" };
-      }
       if (!user) {
         throw { name: "INVALID_USER_FIELD" };
+      }
+      if (!password) {
+        throw { name: "INVALID_PASSWORD" };
       }
 
       const findUser = await User.findOne({

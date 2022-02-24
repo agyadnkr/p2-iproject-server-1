@@ -45,11 +45,16 @@ class WishlistController {
         throw { name: "NOT_FOUND" };
       }
 
-      
       const [result, created] = await Wishlist.findOrCreate({
-        UserId: req.user.id,
-        RestaurantId,
+        where: {
+          UserId: req.user.id,
+          RestaurantId,
+        },
       });
+
+      if (!created) {
+        throw { name: "ALREADY_ON_WISHLIST" };
+      }
 
       res.status(201).json(result);
     } catch (error) {
@@ -63,13 +68,17 @@ class WishlistController {
 
       await Wishlist.destroy({
         where: {
-          id
-        }
+          id,
+        },
       });
 
-      res.status(200).json({ message: "You have remove this restaurant from your wishlist" })
+      res
+        .status(200)
+        .json({
+          message: "You have remove this restaurant from your wishlist",
+        });
     } catch (error) {
-      next(error)
+      next(error);
     }
   }
 }
