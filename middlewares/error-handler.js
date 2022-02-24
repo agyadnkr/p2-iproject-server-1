@@ -41,9 +41,13 @@ const errorHandler = (err, req, res, next) => {
       status = 404;
       message = "Data not found";
       break;
-    case "INVALID_USER":
+    case "INVALID_USER_FIELD":
       status = 400;
       message = "Email/Username is required";
+      break;
+    case "ALREADY_ON_WISHLIST":
+      status = 400;
+      message = "Already on Your Wishlist";
       break;
     case "INVALID_PASSWORD":
       status = 400;
