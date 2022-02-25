@@ -25,7 +25,7 @@ class ReviewController {
           {
             model: User,
             attributes: {
-              exclude: ["createdAt", "updatedAt"],
+              exclude: ["createdAt", "updatedAt", "password"],
             },
             include: [
               {
