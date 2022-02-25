@@ -23,6 +23,8 @@ indexRouter.get("/restaurants/:id", RestaurantController.getOne);
 
 indexRouter.get("/reviews/:restaurantId", ReviewController.getAll);
 
+indexRouter.get("/images/:restaurantId", ReviewController.getImages)
+
 indexRouter.use(authentication);
 
 indexRouter.post(
