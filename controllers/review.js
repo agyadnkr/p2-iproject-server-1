@@ -97,6 +97,25 @@ class ReviewController {
       next(error);
     }
   }
+
+  static async getImages(req, res, next) {
+    try {
+      const { restaurantId: RestaurantId } = req.params;
+
+      const result = await ReviewImage.findAll({
+        where: {
+          RestaurantId
+        },
+        attributes: {
+          exclude: ["createdAt", "updatedAt"]
+        }
+      })
+
+      res.status(200).json(result)
+    } catch (error) {
+      next(error)
+    }
+  }
 }
 
 module.exports = ReviewController;
